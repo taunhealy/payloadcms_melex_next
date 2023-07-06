@@ -2,11 +2,6 @@
 
 import React, { Fragment } from 'react'
 
-import { ReusableContentBlock } from '@/blocks/ReusableContent'
-import { BannerBlock } from '@/blocks/Banner'
-import { BlogContent } from '@/blocks/BlogContent'
-import { BlogMarkdown } from '@/blocks/BlogMarkdown'
-import { CodeBlock } from '@/blocks/CodeBlock'
 
 import { toKebabCase } from '@/utilities/to-kebab-case'
 
@@ -16,12 +11,6 @@ import { Page, ReusableContent } from '@/payload-types'
 type ReusableContentBlockType = Extract<Page['layout'][0], { blockType: 'reusableContentBlock' }>
 
 const blockComponents = {
-  banner: BannerBlock,
-  blogContent: BlogContent,
-  blogMarkdown: BlogMarkdown,
-  code: CodeBlock,
-  reusableContentBlock: ReusableContentBlock,
-  form: FormBlock,
 }
 
 type Props = {

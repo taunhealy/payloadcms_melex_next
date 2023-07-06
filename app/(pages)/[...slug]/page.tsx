@@ -2,7 +2,6 @@ import React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { Hero } from '@/components/Hero'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { mergeOpenGraph } from '@/seo/mergeOpenGraph'
 import { fetchPage, fetchPages } from '../../../graphql'
@@ -20,7 +19,6 @@ const Page = async ({ params: { slug } }) => {
 
   return (
     <React.Fragment>
-      <Hero page={page} />
       <RenderBlocks blocks={page.layout} />
     </React.Fragment>
   )
