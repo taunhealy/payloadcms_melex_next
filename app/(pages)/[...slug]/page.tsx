@@ -1,18 +1,11 @@
-import React from 'react'
-import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-
 import { RenderBlocks } from '@/components/RenderBlocks'
-import { mergeOpenGraph } from '@/seo/mergeOpenGraph'
+import React from 'react'
 import { fetchPage, fetchPages } from '../../../graphql'
+import { Metadata } from 'next'
+import { mergeOpenGraph } from '@/seo/mergeOpenGraph'
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-const Page = async ({ params: { slug } }) => {
+const Page = async ({ params: { slug } }: { params: { slug: string | string[] } }) => {
   const page = await fetchPage(slug)
 
   if (!page) return notFound()
@@ -31,7 +24,7 @@ export async function generateStaticParams() {
 
   return pages.map(({ breadcrumbs }) => ({
     slug: breadcrumbs?.[breadcrumbs.length - 1]?.url?.replace(/^\/|\/$/g, '').split('/'),
-  }))
+  })) 
 }
 
 export async function generateMetadata({ params: { slug } }): Promise<Metadata> {
@@ -47,6 +40,8 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
     title: page?.meta?.title || 'Payload CMS',
     description: page?.meta?.description,
     openGraph: mergeOpenGraph({
+      title: page?.meta?.title || 'Payload CMS',
+      description: page?.meta?.description,
       url: Array.isArray(slug) ? slug.join('/') : '/',
       images: ogImage
         ? [

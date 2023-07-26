@@ -2227,3 +2227,23 @@ export interface TopBar {
   };
   announcement?: string | Announcement;
 }
+
+export interface VehiclesT {
+  id: string;
+  title: string;
+  featuredImage: string | Media;
+  layout?: (
+    | {
+      ctaFields: {
+        richText: {
+          [k: string]: unknown;
+        }[];
+        feature: 'none' | 'cpa';
+        links: {
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference:
+            | {
+              value: string | Page;
+            }
